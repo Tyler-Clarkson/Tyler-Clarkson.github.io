@@ -1,0 +1,468 @@
+/***************************************************************************************
+**************************** box content **** ******************************************
+****************************************************************************************/
+.onDemandWebinar .list-wrap {
+	margin: 0;
+}
+/* list item */
+.onDemandWebinar .list-wrap .list-item {
+	width: 25%;
+	padding: 0 10px 30px;
+}
+.onDemandWebinar .list-wrap .list-item {
+	width: 33.3333%;
+	transition-duration: 100ms !important;
+	padding: 0px 10px 30px;
+}
+/* list item box */
+.onDemandWebinar .list-wrap .list-item .list-item-box {
+	height: 119px;
+	background: #FFF;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+/* img */
+.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-img img {
+	height: 119px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+}
+.list-item.Individual .list-item-img img {
+	border-bottom: 10px solid #9E007E;
+}
+.list-item.Business .list-item-img img {
+	border-bottom: 10px solid #8FAD15;
+}
+.list-item.Financial .list-item-img img {
+	border-bottom: 10px solid #E57200;
+}
+.list-item.Investment .list-item-img img {
+	border-bottom: 10px solid #00567E;
+}
+.list-item.Insurance .list-item-img img {
+	border-bottom: 10px solid #D22630;
+}
+/* content */
+.list-item-content h4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    padding-right: 15px;
+    font-weight: bold;
+    overflow: hidden;
+	font-size: 20px;
+}
+.list-item-content .desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    margin-top: 0px !important;
+    overflow: hidden;
+}
+.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content {
+    text-align: left;
+	padding: 0px;
+}
+.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content div {
+	line-height: 1.15em;
+}
+.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content div + div {
+	margin-top: 10px;
+}
+.list-item-content .btn {
+    margin-top: 15px;
+}
+.btn.Individual {
+    color: #9E007E !important;
+    border-color: #9E007E !important;
+}
+.btn.Business {
+    color: #8FAD15 !important;
+    border-color: #8FAD15 !important;
+}
+.btn.Financial {
+    color: #E57200 !important;
+    border-color: #E57200 !important;
+}
+.btn.Investment {
+    color: #00567E !important;
+    border-color: #00567E !important;
+}
+.btn.Insurance {
+    color: #D22630 !important;
+    border-color: #D22630 !important;
+}
+.btn.Individual:hover, .Individual .onDemandHeader {
+    color: rgb(255, 255, 255) !important;
+    background: #9E007E !important;
+}
+.btn.Business:hover, .Business .onDemandHeader {
+    color: rgb(255, 255, 255) !important;
+    background: #8FAD15 !important;
+}
+.btn.Financial:hover, .Financial .onDemandHeader {
+    color: rgb(255, 255, 255) !important;
+    background: #E57200 !important;
+}
+.btn.Investment:hover, .Investment .onDemandHeader {
+    color: rgb(255, 255, 255) !important;
+    background: #00567E !important;
+}
+.btn.Insurance:hover, .Insurance .onDemandHeader {
+    color: rgb(255, 255, 255) !important;
+    background: #D22630 !important;
+}
+#showMore {
+    float: right;
+}
+/***************************************************************************************
+**************************** dropdown filters ******************************************
+****************************************************************************************/
+
+.onDemandWebinar .dropdown > a:after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 6.5px 0 6.5px;
+	border-color: #009CA6 transparent transparent transparent;
+	margin: 0 0 0 7px;
+	top: 0;
+}
+.onDemandWebinar .dropdown ul.list-filter {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	float: right;
+	clear: both;
+	left: auto;
+	right: 0;
+	background: #F7F7F6;
+	min-width: 215px;
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.onDemandWebinar .dropdown ul.list-filter > li {
+	padding: 9px 10px 9px;
+	margin: 0 0 1px;
+	font-size: 14px;
+	line-height: 1.15em;
+	text-transform: uppercase;
+	position: relative;
+	display: none;
+	border-right: 1px #F7F7F6;
+	border-left: 4px solid #009CA6;
+	background: #FFF;
+}
+.onDemandWebinar .dropdown ul.list-filter > li:last-child {
+	margin: 0;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.filter-true {
+	display: block;
+}
+.onDemandWebinar .dropdown ul.list-filter > li:hover {
+	color: #FFF;
+	background: #009CA6;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.active {
+	background: #e5e2e0;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Individual {
+	border-left-color: #9E007E;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Individual:hover {
+	background: #9E007E;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Business {
+	border-left-color: #8FAD15;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Business:hover {
+	background: #8FAD15;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Financial {
+	border-left-color: #E57200;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Financial:hover {
+	background: #E57200;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Investment {
+	border-left-color: #00567E;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Investment:hover {
+	background: #00567E;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Insurance {
+	border-left-color: #D22630;
+}
+.onDemandWebinar .dropdown ul.list-filter > li.Insurance:hover {
+	background: #D22630;
+}
+.onDemandWebinar .dropdown > a {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgb(51, 50, 54);
+    font-size: 14px;
+    display: inline-block;
+    line-height: 40px;
+    width: 100%;
+    border-top: 1px solid rgb(40, 51, 74);
+    border-bottom: 1px solid rgb(40, 51, 74);
+    padding: 0px 30px;
+    text-decoration: none;
+    margin: -1px 0px;
+    background: rgb(247, 247, 246);
+}
+#topicFilter, #audienceFilter {
+    position: relative !important;
+}
+.onDemandWebinar .dropdown ul.list-filter {
+    min-width: 215px;
+    float: none !important;
+    box-shadow: none !important;
+    margin: 0px;
+    list-style: none;
+    background: rgb(247, 247, 246);
+    padding: 0px 30px 5px !important;
+    border-radius: 0px !important;
+    border: none !important;
+    border-top: 1px solid rgb(40, 51, 74) !important;
+    border-bottom: 1px solid rgb(40, 51, 74) !important;
+}
+/***************************************************************************************
+**************************** intro section *********************************************
+****************************************************************************************/
+.onDemandWebinarSectionIntro {
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+.onDemandWebinarSection {
+    text-align: center;
+	padding: 60px 30px;
+    background: rgb(247, 247, 246);
+}
+.greyHelper {
+    background: rgb(247, 247, 246);
+}
+.onDemandHeader {
+    text-align: left;
+    font-size: 16px;
+    padding: 0px 0px 10px 10px;
+}
+/***************************************************************************************
+**************************** filter bubbles ********************************************
+****************************************************************************************/
+.selectedFilters, #resetMenu {
+    font-size: 16px;
+}
+.selectedFilters {
+    padding: 10px 30px;
+}
+.selectedFilters span span {
+    white-space: nowrap;
+    display: inline-block;
+    margin: 3px;
+}
+.selectedFilters .icon-si_close {
+    font-size: 14px;
+    margin-left: 20px;
+}
+#audienceSelected, #audienceSelected span {
+    color: rgb(255, 255, 255);
+}
+#audienceSelected .removeable {
+	border-radius: 8px;
+    padding: 0px 10px;
+}
+#audienceSelected.Individual .removeable {
+    background-color: rgb(158, 0, 126) !important;
+    border: 1px solid rgb(158, 0, 126) !important;
+}
+#audienceSelected.Business .removeable {
+    background-color: rgb(143, 173, 21) !important;
+    border: 1px solid rgb(143, 173, 21) !important;
+}
+#audienceSelected.Financial .removeable {
+    background-color: rgb(229, 114, 0) !important;
+    border: 1px solid rgb(229, 114, 0) !important;
+}
+#audienceSelected.Investment .removeable {
+    background-color: rgb(0, 86, 126) !important;
+    border: 1px solid rgb(0, 86, 126) !important;
+}
+#audienceSelected.Insurance .removeable {
+    background-color: rgb(210, 38, 48) !important;
+    border: 1px solid rgb(210, 38, 48) !important;
+}
+#topicsSelected > span, #resourcesSelected > span {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-image: initial;
+    padding: 0px 10px;
+    border-radius: 8px;
+}
+#resetMenu {
+    float: right;
+    display: none;
+    cursor: pointer;
+}
+/***************************************************************************************
+**************************** media queries *********************************************
+****************************************************************************************/
+/* <768 only on xs devices */
+@media (max-width: 767px) {
+	.onDemandWebinar .dropdown ul.list-filter {
+		min-width: 100%;
+	}
+	.onDemandWebinar .list-wrap .list-item {
+		width: 100%;
+		padding: 0 0 10px;
+	}
+	.onDemandWebinar .list-wrap .list-item .list-item-box {
+		min-height: auto;
+		border-bottom-width: 4px;
+	}
+	.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content h4 {
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+	.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content div {
+		font-size: 15px;
+	}
+	.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content div + div {
+		margin-top: 5px;
+	}
+
+	.onDemandWebinar .dropdown > a {
+		display: block;
+	}
+	.onDemandWebinar .dropdown {
+		text-align: left;
+		position: relative;
+	}
+}
+/* <= 991 small devices and below */
+@media (max-width: 991px) {
+	.onDemandWebinar .list-wrap .list-item {
+		width: 100%;
+		padding: 10px 0px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.onDemandWebinar .dropdown > a:after {
+		position: absolute;
+		top: 14px;
+		right: 30px;
+		display: block;
+	}
+}
+/* >767 <992 small devices only */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.list-item-box, .onDemandWebinar .list-wrap .list-item .list-item-box .list-item-img img {
+		height: 223px !important;
+	}
+}
+/* >991 md devices and larger */
+@media only screen and (min-width: 992px) {
+	.onDemandWebinarSection {
+		text-align: left;
+	}
+	.onDemandWebinarSectionIntro {
+		border-left: 2px solid rgb(40, 51, 74);
+	}
+	.filterDropdowns {
+		height: 42px;
+		border-top: 1px solid rgb(40, 51, 74);
+		border-bottom: 1px solid rgb(40, 51, 74);
+		background: rgb(247, 247, 246);
+	}
+	.dropdown {
+		width: 33%;
+		float: left;
+	}
+	.onDemandWebinar .dropdown > a {
+		border-width: initial !important;
+		border-style: none !important;
+		border-color: initial !important;
+		border-image: initial !important;
+		margin: 0px !important;
+	}
+	.onDemandWebinar .dropdown > a:after {
+		position: absolute;
+		top: 14px;
+		right: 30px;
+		display: block;
+	}
+	.onDemandWebinar .dropdown ul.list-filter {
+		padding: 0px !important;
+		border-width: 1px !important;
+		border-style: solid !important;
+		border-color: rgb(40, 51, 74) !important;
+		border-image: initial !important;
+	}
+	.selectedFilters {
+		width: 100%;
+		position: absolute !important;
+	}
+	.list-item-img {
+		padding: 0px;
+	}
+	.onDemandWebinar .list-wrap .list-item.Individual .list-item-box {
+		border: 1px solid #9E007E !important;
+	}
+	.onDemandWebinar .list-wrap .list-item.Business .list-item-box {
+		border: 1px solid #8FAD15 !important;
+	}
+	.onDemandWebinar .list-wrap .list-item.Financial .list-item-box {
+		border: 1px solid #E57200 !important;
+	}
+	.onDemandWebinar .list-wrap .list-item.Investment .list-item-box {
+		border: 1px solid #00567E !important;
+	}
+	.onDemandWebinar .list-wrap .list-item.Insurance .list-item-box {
+		border: 1px solid #D22630 !important;
+	}
+	.list-item-box {
+		height: 442px !important;
+	}
+	.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-img img {
+		height: 167px;
+	}
+	.onDemandWebinar .list-wrap .list-item .list-item-box .list-item-content {
+		padding: 20px;
+	}
+	/*.list-item-content .desc {
+		-webkit-line-clamp: 2;
+	}*/
+	.list-item-content .btn {
+		float: right;
+	}
+}
+/* >= 1200 large devices and up */
+@media only screen and (min-width: 1200px) {
+	.onDemandWebinar .list-wrap .list-item {
+		padding: 30px;
+	}
+}
+/* custom queries */
+@media only screen and (min-width: 1150px) {
+	.onDemandWebinarSectionIntro {
+		padding-left: 60px;
+	}
+}
+@media only screen and (min-width: 1100px) and (max-width: 1149px) {
+	.onDemandWebinarSectionIntro {
+		padding-left: 30px;
+	}
+}

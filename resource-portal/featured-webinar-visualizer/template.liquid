@@ -1,0 +1,232 @@
+<!-- #############################################
+	################## HEADER #####################
+     ############################################# -->
+
+<div class="featuredWebinarSection row siteWidth">
+	<div class="col-md-3 col-xs-12 featuredWebinarSectionTitle">
+		<h2 class="title">Featured<small>Webinars</small></h2>
+	</div>
+	<div class="col-md-9 col-xs-12 featuredWebinarSectionIntro">
+		Part of being a great leader is staying informed—but keeping up to date on the latest industry trends doesn’t need to be a tedious task! Whether you’re running a business, leading a financial institution to success, or learning to make smarter personal investments, SWBC offers in-depth webinars with data-driven presentations, commentary, and actionable advice from top financial and business advisors. 
+	</div>
+</div>
+<div id="featuredCarousel" class="carousel siteWidth visible-lg-block" data-interval="false" data-ride="carousel">
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner" role="listbox">
+	<script>
+		var count = 0;
+		var items = [];
+		$('div.hideAdmin').click();
+	</script>
+
+<!-- #############################################
+	################## TEMPLATE ###################
+     ############################################# -->
+
+	<!-- template: repeat -->
+	{% if webinarFeatured != empty %}
+		{% assign topicsAsSafeString = topic | join: "," | replace: "&amp; ", "" | replace: " ", "-" | replace: ",", " " |replace: "Insurance", "Insurance1" %}
+		{% assign topicsAsString = topic | join: ", " | replace: "Insurance", "Insurance1" %}
+		{% assign titleAsId = webinarTitle | replace: " ", "" %}
+		{% assign titleAsId = {{titleAsId | remove: '\''}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '!'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '@'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '£'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '$'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '%'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '^'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '&'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '*'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '('}} -%}
+		{% assign titleAsId = {{titleAsId | remove: ')'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '-'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '+'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '='}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '{'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '}'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: ':'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '|'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '\'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '<'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '>'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: ','}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '.'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '?'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '~'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '`'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '\'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '/'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '#'}} -%}
+		{% assign titleAsId = {{titleAsId | remove: ';'}} -%}
+	 
+	<div id="{{titleAsId}}" class="item featuredWebinar row">
+		<div class="col-md-6">
+			<p class="featuredTopics">{{webinarResource}} | {{topicsAsString | truncate: 50 }}</p>
+			<h4 class="featuredTitle">{{webinarTitle }}</h4>
+			<span class="featuredDate"></span>
+			<p class="featuredDescription">{{webinarDescription}}</p>
+		</div>
+		<div class="col-md-6">
+			<img src="/Portals/_default/Skins/SWBC/images/content/placeholder-photo.gif" style="background-image:url({{webinarImage}});" alt="{{webinarTitle}}" />
+			<div class="featuredBanner {{audience}} {% if featuring == empty %}empty{%endif%}">
+				{% if featuring != empty %}
+				<span class="smallItalics">Featured Expert</span><br>
+				<span class="featuringBold">{{featuring}}</span>
+				{% endif %}
+			</div>
+		</div>
+		<div class="featuredLearnMore col-md-6">
+			<a class="btn btn-{{audience}}" href="{{learnMoreUrl}}" target="_blank" style="color: #fff !important;">{% if buttonCopy == "" or buttonCopy == nil %}LEARN MORE{% else %}{{buttonCopy}}{% endif %}</a>
+		</div>
+	</div>
+	<script>
+		items.push(['{{webinarImage}}', '{{webinarTitle}}', '{{webinarDateTime | date: "MMMM dd, yyyy" }}', '{{audience}}', '{{topicsAsString}}', '{{featuring}}', '{{webinarDescription}}', '{{learnMoreUrl}}', '{{webinarDateTime | date: "MMM dd, yyyy" }}', '{{webinarDateTime | date: "yyyyMMdd" }}', '{{titleAsId}}', '{{webinarLengthmin}}', '{{webinarResource}}']);
+	</script>
+{% endif %}
+
+<!-- #############################################
+	################## FOOTER #####################
+     ############################################# -->
+
+	<!-- template: footer -->	
+	</div>
+</div>
+<div class="hidden-lg mtFrame top col-xs-12"></div>
+<div class="siteWidth row">
+	<div class="custom-indicators col-xs-12 visible-lg-block">
+	</div>
+	<div class="mobileTabletContainer hidden-lg">
+	</div>
+<script>
+	/*	items[]
+			----------------
+			0: image
+			1: title
+			2: date
+			3: audience
+			4: topics
+			5: featuring
+			6: description
+			7: learn more
+			8: date with abbreviated month 
+			9: date for comparing against today
+			10: id of each webinar
+			11: length in min of webinar
+			12: resource  */
+	
+	$.each(items, function() {
+		var webLength = '';
+		if(!isNullOrEmpty(this[11])){
+		    webLength = ' <span class="whitePipe">|</span> ' + this[11] + ' min';
+		}
+		var dateString = 'On Demand' + webLength;
+		var mDateString = "On Demand " + this[12];
+		if (String(this[9]) > '{{"now" | date: "yyyyMMdd"}}') { // webinar is in the future
+			dateString = this[2] + webLength;
+			mDateString = String(this[8]);
+		}												
+		$("#" + String(this[10]) + " .featuredDate").html(dateString);
+
+		if (count == 4) return false;
+		var active = count == 0 ? ' active' : '';
+		// populates the custom indicators on the carousel that only displays on desktop
+		$('.custom-indicators').append('' +
+			'<a class="imageIndicator col-md-3' + active + '" data-target="#featuredCarousel" data-slide-to="' + count + '">' +
+				'<div class="indicatorBorder ' + String(this[3]) + '">' +
+					'<span class="arrow-overlay"></span>' +
+					'<img src="/Portals/_default/Skins/SWBC/images/content/placeholder-photo.gif" style="background-image:url(' + String(this[0]) + ');" alt="' + String(this[1]) + '" />' +
+					'<div class="audience-overlay ' + String(this[3]) + '">' +
+						'<h4 class="indicatorTitle">' + String(this[1]) + '</h4>' +
+						'<span class="indicatorDate">' + mDateString + '</span><br>' +
+					'</div>' +
+				'</div>' +
+			'</a>');
+		// populates the accordion-like container that only displays on mobile/tablet
+		$('.mobileTabletContainer').append('' +
+			'<div class="mtItem col-xs-12 ' + String(this[3]) + '">' +
+				'<div class="collapsed row shadow item' + count + '">' +
+					'<img class="mtImg hidden-xs col-sm-5 ' + String(this[3]) + '" src="/Portals/_default/Skins/SWBC/images/content/placeholder-photo.gif" style="background-image:url(' + String(this[0]) + ');" alt="' + String(this[1]) + '" />' +
+					'<div class="mtInfo col-xs-12 col-sm-7">' +
+						'<h4 class="mtTitle">' + String(this[1]) + '</h4>' +
+						'<p class="mtDate">' + mDateString + '<span class="plusMinus icon-si_plus-circle icon-lg"></span></p>' +
+					'</div>' +
+				'</div>' +
+				'<div class="expanded hidden row shadow item' + count + '">' +
+					'<div class="mtExpanded col-xs-12">' +
+						'<div class="row">' +
+							'<div class="col-xs-12 col-sm-8 mtExpandedInfo">' +
+								'<p class="mtFeaturingTitle">SWBC Industry Experts</p>' +
+								'<h5 class="mtFeaturing">' + String(this[5]) + '</h5>' +
+								'<span class="visible-xs-inline plusMinus icon-si_minus-circle icon-lg"></span><p class="mtDesc">' + String(this[6]) + '</p>' +
+								'<a class="visible-xs-inline btn btn-sm" href="' + String(this[7]) + '" target="_blank">LEARN MORE</a>' +
+							'</div>' +	
+							'<div class="col-sm-4 mtExpandedRight">' +
+								'<a class="hidden-xs btn" href="' + String(this[7]) + '" target="_blank">LEARN MORE</a>' +
+								'<span class="hidden-xs plusMinus icon-si_minus-circle icon-lg"></span>' +
+							'</div>' +	
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>');
+		count = count+1;
+	});
+	
+	$('.collapsed').on('click', function() {
+		$('.collapsed').removeClass('hidden');
+		$('.expanded').addClass('hidden');
+		var itemNum = $(this).attr('class').replace("collapsed row shadow ", "");
+		$(this).addClass('hidden');
+		$('.expanded.' + itemNum).removeClass('hidden');
+		setHeight('.mtExpandedRight', maxHeight('.mtExpandedInfo'));
+	});
+	
+    function isNullOrEmpty(element){
+        return (element === null) || (element === undefined) || (String(element) === "");
+    }
+	
+	function maxHeight(selector) {
+		var maxH = 0;
+		$.each($(selector), function() {
+			$(this).outerHeight('auto')
+			if (maxH < $(this).outerHeight()) {
+				maxH = $(this).outerHeight();
+			}
+		});
+		return maxH;
+	}
+	
+	function setHeight(selector, height) {
+		$.each($(selector), function() {
+			$(this).outerHeight(height);
+		});
+	}
+	
+	$('.mtImg').outerHeight($('.mtInfo').first().outerHeight());
+	$('a.imageIndicator').on('click', function() {
+		$('a.imageIndicator.active').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	$(window).resize(function() {
+		setHeight('.mtInfo', maxHeight('.mtInfo'));
+		//setHeight('.mtImg, .mtExpanded', $('.mtInfo').outerHeight());
+		setHeight('.mtImg', $('.mtInfo').outerHeight());
+		//setHeight('.mtInfo', maxHeight('.mtExpandedInfo'))
+	});		
+	
+	$('#featuredCarousel').bind('slid.bs.carousel', function (e) {
+		var activeItem = $('.carousel .item.active').index()/2 - 0.5;
+		$('.imageIndicator').removeClass('active');
+		$('.imageIndicator').eq(activeItem).addClass('active');
+	});	
+	
+	$(document).ready(function() {
+		$('.carousel').carousel({
+		  interval: 7000
+		});
+	});
+	
+	$('.carousel-inner .item').first().addClass('active');
+</script>
+</div>
+<div class="hidden-lg mtFrame bottom col-xs-12"></div>

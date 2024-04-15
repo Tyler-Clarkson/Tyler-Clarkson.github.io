@@ -1,0 +1,530 @@
+#featuredCarousel {
+	padding: 0px 30px;
+}
+
+.featuredWebinarSection {
+	padding: 60px 30px;
+}
+
+.carousel-inner {
+	padding: 80px;
+	background-color: #28334A;
+}
+
+.carousel-inner .item p, .carousel-inner .item h4 {
+	color: #fff;
+}
+
+.carousel-inner .item .featuredDate {
+	color: #5AC5CB;
+}
+
+.carousel-inner .item img {
+    width: 415px;
+    height: 246px;
+    float: right;
+}
+
+.whitePipe {
+	color: #fff;
+}
+
+.custom-indicators .active .arrow-overlay {
+	position: absolute;
+	left: 50%;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #28334A;
+	transform: translateX(-50%);
+}
+
+.custom-indicators {
+	padding: 0px 55px !important;
+	margin-bottom: 70px;
+}
+
+.custom-indicators .imageIndicator {
+	padding: 0px 8px !important;
+}
+
+.custom-indicators .imageIndicator img {
+	width: 100%;
+	height: 119px;
+	background-size: cover;
+}
+
+.custom-indicators .indicatorDate {
+	font-weight: 200;
+}
+
+.imageIndicator, .imageIndicator:hover, .imageIndicator.active:hover {
+	text-decoration: none;
+}
+
+.audience-overlay {
+	padding: 20px;
+	color: #28334A;
+	background-color: #fff;
+}
+
+.imageIndicator.active .audience-overlay, .imageIndicator.active .indicatorTitle {
+	color: #fff;
+}
+
+.audience-overlay .indicatorTitle {
+	color: #28334A;
+	font-size: 20px;
+	font-weight: bold;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;	
+}
+
+.audience-overlay:hover {
+	color: #28334A;
+}
+
+.audience-overlay .indicatorTitle:hover {
+	color: #28334A;	
+}
+
+.carousel-indicators .imageIndicator img {
+	max-width: none;
+}
+
+.carousel-inner .item .featuredTopics {
+    font-weight: 200;
+}
+
+.carousel-inner .item .featuredBanner {
+    float: right;
+    width: 415px;
+    color: #fff;
+    padding: 25px;
+}
+
+.carousel-inner .item .featuredBanner.empty {
+    height: 100px;
+}
+
+.smallItalics {
+	font-size: 14px;
+	font-style: italic;
+}
+
+.featuringBold {
+	font-weight: bold;
+}
+
+.carousel-inner .item .featuredTitle {
+    font-weight: bold;
+	font-size: 24px;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;	
+}
+
+.carousel-inner .item .featuredDescription {
+	margin: 30px 0px;
+	font-size: 18px;
+	display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carousel-inner .item .featuredLearnMore {
+	position: absolute;
+	bottom: 0px;
+}
+
+.carousel-inner .item .featuredBanner.Individual, .imageIndicator.active .audience-overlay.Individual {
+    background-color: #9E007E !important;
+}
+.carousel-inner .item .featuredBanner.Business, .imageIndicator.active .audience-overlay.Business {
+    background-color: #8FAD15 !important;
+}
+.carousel-inner .item .featuredBanner.Financial, .imageIndicator.active .audience-overlay.Financial {
+    background-color: #E57200 !important;
+}
+.carousel-inner .item .featuredBanner.Investment, .imageIndicator.active .audience-overlay.Investment {
+    background-color: #00567E !important;
+}
+.carousel-inner .item .featuredBanner.Insurance, .imageIndicator.active .audience-overlay.Insurance {
+    background-color: #D22630 !important;
+}
+
+.btn-Individual {
+    border-color: #9E007E !important;
+}
+.btn-Business {
+    border-color: #8FAD15 !important;
+}
+.btn-Financial {
+    border-color: #E57200 !important;
+}
+.btn-Investment {
+    border-color: #00567E !important;
+}
+.btn-Insurance {
+    border-color: #D22630 !important;
+}
+.btn-Individual:hover {
+    color: rgb(255, 255, 255) !important;
+    background: #9E007E !important;
+}
+.btn-Business:hover {
+    color: rgb(255, 255, 255) !important;
+    background: #8FAD15 !important;
+}
+.btn-Financial:hover {
+    color: rgb(255, 255, 255) !important;
+    background: #E57200 !important;
+}
+.btn-Investment:hover {
+    color: rgb(255, 255, 255) !important;
+    background: #00567E !important;
+}
+.btn-Insurance:hover {
+    color: rgb(255, 255, 255) !important;
+    background: #D22630 !important;
+}
+
+.imageIndicator:not(.active) .audience-overlay.Individual {
+    color: #9E007E !important;
+}
+.imageIndicator:not(.active) .audience-overlay.Business {
+    color: #8FAD15 !important;
+}
+.imageIndicator:not(.active) .audience-overlay.Financial {
+    color: #E57200 !important;
+}
+.imageIndicator:not(.active) .audience-overlay.Investment {
+    color: #00567E !important;
+}
+.imageIndicator:not(.active) .audience-overlay.Insurance {
+    color: #D22630 !important;
+}
+
+.imageIndicator.active h4:hover {
+	color: #fff;
+}
+
+.indicatorBorder {
+	border: 1px solid grey;
+}
+
+.imageIndicator:not(.active) .indicatorBorder.Individual:hover {
+    border: 1px solid #9E007E !important;
+}
+.imageIndicator:not(.active) .indicatorBorder.Business:hover {
+    border: 1px solid #8FAD15 !important;
+}
+.imageIndicator:not(.active) .indicatorBorder.Financial:hover {
+    border: 1px solid #E57200 !important;
+}
+.imageIndicator:not(.active) .indicatorBorder.Investment:hover {
+    border: 1px solid #00567E !important;
+}
+.imageIndicator:not(.active) .indicatorBorder.Insurance:hover {
+    border: 1px solid #D22630 !important;
+}
+
+.active .indicatorBorder {
+	border-top: none;
+}
+
+.featuredWebinarSection {
+	text-align: center;	
+}
+
+.featuredWebinarSectionIntro {
+	border: none;
+}
+
+.heroMain:before {
+    background-image: url('https://d.swbc.com/portals/_default/skins/swbc/images/slants/hero-slant-grey.svg');
+}
+
+.mtItem {
+	margin: 10px auto;
+}
+
+.mtImg {
+	background-size: cover;
+}
+
+.mtDate {
+	color: #5AC5CB
+}
+
+.mtTitle {
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	padding-right: 25px;
+}
+	
+.mtInfo {
+	background-color: #fff;
+	padding: 15px;
+}
+
+.plusMinus {
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 24px !important;
+}
+
+.expanded .plusMinus {
+	color: #fff;
+	right: 0px;
+}
+
+.mtTopic {
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mtFrame {
+	height: 20px;
+	background-color: #28334A;
+}
+
+.mtExpanded {
+	padding: 10px 15px 10px 10px;
+	color: #fff;
+}
+
+.mtExpanded > .row {
+	margin: 0px !important;
+}
+
+.mtFeaturingTitle {
+	color: #fff !important;
+	font-size: 14px;
+	font-size: 14px;
+    font-style: italic;
+    font-weight: 200;
+	margin-bottom: 0px;
+}
+
+.mtFeaturing {
+	color: #fff !important;
+	font-size: 18px;
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mtDesc {
+	color: #fff !important;
+	font-size: 14px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	margin-bottom: 0px;
+	padding-right: 25px;
+}
+
+.expanded .btn {
+	color: #fff !important;
+	border-color: #fff;
+	float: right;
+	margin-top: 4px;
+}
+
+.mtExpandedRight {
+	height: 100%;
+}
+
+.mtExpandedRight a {
+	position: absolute;
+	right: 45px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.mtExpanded .row {
+	height: 100%;
+}
+
+.mtFrame.top {
+	box-shadow: 0px 5px 5px rgb(0 0 0 / 50%);
+    margin-bottom: -10px;
+    z-index: 1;
+}
+
+.mtFrame.bottom {
+	box-shadow: 0px -5px 5px rgb(0 0 0 / 50%);
+    margin-top: -10px;
+    z-index: 1;
+}
+
+.Individual .mtExpanded {
+	background-color: #9E007E;
+}
+.Business .mtExpanded {
+	background-color: #8FAD15;
+}
+.Financial .mtExpanded {
+	background-color: #E57200;
+}
+.Investment .mtExpanded {
+	background-color: #00567E;
+}
+.Insurance .mtExpanded {
+	background-color: #D22630;
+}
+
+.mobileTabletContainer img.Individual {
+	border-left: 10px solid #9E007E;
+}
+.mobileTabletContainer img.Business {
+	border-left: 10px solid #8FAD15;
+}
+.mobileTabletContainer img.Financial {
+	border-left: 10px solid #E57200;
+}
+.mobileTabletContainer img.Investment {
+	border-left: 10px solid #00567E;
+}
+.mobileTabletContainer img.Insurance {
+	border-left: 10px solid #D22630;
+}
+
+.shadow {
+	box-shadow: 1px 1px 5px grey;
+	margin: 0;
+}
+
+@media only screen and (min-width: 625px) {
+	.expanded .visible-xs-inline {
+		display: none !important;
+	}
+	
+	.expanded .hidden-xs {
+		display: inline-block !important;
+	}
+	
+	.mtExpandedInfo {
+		width: 66.66666667% !important;
+	}
+	
+	.mtDesc {
+		-webkit-line-clamp: 2;
+	}
+}
+
+@media only screen and (min-width: 1150px) {
+	.featuredWebinarSectionIntro {
+		padding-left: 60px;
+	}
+}
+
+@media only screen and (min-width: 1100px) and (max-width: 1149px) {
+	.featuredWebinarSectionIntro {
+		padding-left: 30px;
+	}
+}
+
+@media only screen and (min-width: 1099px) and (max-width: 991px) {
+	.featuredWebinarSectionIntro {
+		padding-left: 15px;
+	}
+}
+
+/* Extra small devices (phones, less than 768px) */
+@media only screen and (max-width: 767px) {
+	.mtTitle {
+		font-size: 20px;
+		font-weight: bold;
+		-webkit-line-clamp: 3;
+	}
+	
+	.mtDate {
+		font-size: 16px;
+		font-weight: 300;
+	}
+	
+	.mtTopic {
+		font-size: 14px;
+		font-weight: 200;
+	}
+	
+	.featuredWebinarSectionIntro {
+		border: none;
+	}
+	
+	.mtItem.Individual .collapsed {
+		border-left: 10px solid #9E007E;
+	}
+	.mtItem.Business .collapsed {
+		border-left: 10px solid #8FAD15;
+	}
+	.mtItem.Financial .collapsed {
+		border-left: 10px solid #E57200;
+	}
+	.mtItem.Investment .collapsed {
+		border-left: 10px solid #00567E;
+	}
+	.mtItem.Insurance .collapsed {
+		border-left: 10px solid #D22630;
+	}
+}
+
+/* Small devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.mobileTabletContainer {
+		padding: 0px 30px;
+	}
+	
+	.mtTitle {
+		font-size: 24px;
+		font-weight: bold;
+	}
+	
+	.mtDate {
+		font-size: 18px;
+		font-weight: 300;
+	}
+	
+	.mtTopic {
+		font-size: 16px;
+		font-weight: 200;
+	}
+	
+	.mtExpandedInfo {
+		padding: 14px;
+		padding-right: 0px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.featuredWebinarSection {
+		text-align: left;	
+	}
+	
+	.featuredWebinarSectionIntro {
+		border-left: 2px solid #28334A;
+	}
+}

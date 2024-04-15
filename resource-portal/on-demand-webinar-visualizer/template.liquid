@@ -1,0 +1,568 @@
+<!-- #############################################
+	################## HEADER #####################
+     ############################################# -->
+    
+<!-- On Demand Webinar -->
+<!-- template:header -->
+<div class="onDemandWebinar">
+	<div class="greyHelper">
+		<div class="siteWidth">
+			<div class="onDemandWebinarSection row siteWidth">
+				<div class="col-md-3 col-xs-12 onDemandWebinarSectionTitle">
+					<h2 class="title">On-Demand<small>Webinars</small></h2>
+				</div>
+				<div class="col-md-9 col-xs-12 onDemandWebinarSectionIntro">
+					Who doesn’t have a packed schedule these days? If you want to enjoy the latest expert advice at your leisure, our webinars are available on demand. So sit back, grab some coffee or lunch, and enjoy a pre-recorded session with industry experts and thought leaders from SWBC. 
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="filterDropdowns">
+		<div class="siteWidth">
+			<div class="dropdown audience">
+				<a id="audienceDrop" class="filter-header" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by Audience:</a>
+				<ul id="audienceFilter" class="list-filter dropdown-menu" aria-labelledby="audienceDrop">
+					<li data-filter="*" class="filter-true active all">All</li>
+					<li class="Individual" data-filter=".Individual">Individuals</li>
+					<li class="Business" data-filter=".Business">Businesses</li>
+					<li class="Financial" data-filter=".Financial">Financial Institutions/<br>Loan Servicers</li>
+					<li class="Investment" data-filter=".Investment">Investment Firms</li>
+					<li class="Insurance" data-filter=".Insurance">Insurance Agents</li>
+				</ul>
+			</div>
+			<div class="dropdown topic">
+				<a id="topicDrop" class="filter-header" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by Topic:</a>
+				<ul id="topicFilter" class="list-filter dropdown-menu" aria-labelledby="topicDrop">
+					<li data-filter="*" class="filter-true active all">All</li>
+				</ul>
+			</div>
+			<div class="dropdown resource">
+			    <a id="resourceDrop" class="filter-header" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by Content Type:</a>
+			    <ul id="resourceFilter" class="list-filter dropdown-menu" aria-labelledby="resourceDrop">
+			        <li data-filter="*" class="filter-true active all">All</li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+	<div class="siteWidth">
+		<div id="bubbleSpacer">
+			<div class="selectedFilters">
+				<span id="audienceSelected"></span>
+				<span id="topicsSelected"></span>
+				<span id="resourcesSelected"></span>
+				<div id="resetMenu">RESET FILTER <span class="icon-si_play_triangle"></span></div>
+			</div>
+		</div>
+		<div class="padThis">
+			<div class="list-wrap list-grid">
+			<script>
+				// initialize global arrays
+				var cardMapping = [];
+				var topicMap = {};		// correleated list of topics to relevant audience (ie: {<audience>: [topoics], ..., <audience>: [topoics]}
+				var resourceMap = {}    //correleated lits of resources to relevant audience(ie: {<audience>: [resources], ..., <audience>:[resources])
+				var topics = [];		// for easier access to topics only
+				var resources = [];     //for easier access to resources types only
+			</script>
+
+<!-- #############################################
+	################## TEMPLATE ###################
+     ############################################# -->
+
+            <!-- template:repeat -->
+            <!-- {{contentName}} -->
+            {% assign topicsAsSafeString = topic | join: "," | replace: "&amp; ", "" | replace: " ", "-" | replace: ",", " " |replace: "Insurance", "Insurance1" %}
+            {% assign topicsAsString = topic | join: "," | replace: "Insurance", "Insurance1" %}
+            <script>
+                var topicsForMap = [];
+                // space deliniated string of all topics for given webinar with ampersand removed and spaced converted to dashes
+                var stringTopicsSafe = '{{topicsAsSafeString}}';
+                // comma deliniated string of all topics for given webinar exactly as-is
+                var stringTopics = '{{topicsAsString}}';
+                //assign webinarResource to variable
+                var resourceType = '{{webinarResource}}';
+                // add audience to topicMap object if it doesn't already exist
+                if (!('{{audience}}' in topicMap)) {
+                    topicMap['{{audience}}'] = [];
+                }
+                
+                if (!('{{audience}}' in resourceMap)){
+                    resourceMap['{{audience}}'] = [];
+                }
+                //add resource type to array
+                if(resources.indexOf(resourceType) == -1){
+                    resources.push(resourceType);
+                }
+                //add the resource to the relevant audience key in the resourceMap object if it doesn's exist
+                if(resourceMap['{{audience}}'].indexOf(resourceType) == -1){
+                    resourceMap['{{audience}}'].push(resourceType);
+                }
+                // iterate over each topic for the given webinar
+                $.each(stringTopicsSafe.split(" "), function() {
+                    topicsForMap.push(String(this));
+                    // add the topic to the relevant audience key in the topicMap object if it doesn't exist
+                    if (topicMap['{{audience}}'].indexOf(String(this)) == -1) {
+                        topicMap['{{audience}}'].push(String(this));
+                    }
+                });
+                $.each(stringTopics.split(","), function() {
+                    // add the topic to the topics array if it doesn't exist
+                    if (topics.indexOf(String(this)) == -1) {
+                        topics.push(String(this));
+                    }	
+                    
+                });
+                
+                cardMapping.push({
+                    audience: '{{audience}}',
+                    topics: topicsForMap,
+                    content: '{{webinarResource}}'
+                });
+            </script>
+            <!-- each on demand webinar -->
+            <div class="grid-sizer"></div>
+            <div class="list-item {{audience}} {{ topicsAsSafeString }} {{webinarResource}}" data-audience-type="{{audience}}"  data-topic-types="{{ topicsAsSafeString }}" data-resource-type="{{webinarResource}}">
+                <div class="list-item-box">
+                    <div class="list-item-box-inner">
+                        <div class="list-item-img col-xs-4 col-sm-5 col-md-12">
+                            <img src="/Portals/_default/Skins/SWBC/images/content/placeholder-photo.gif" style="background-image:url({{webinarImage}});" alt="{{webinarTitle}}" />
+                        </div>
+                        <div class="onDemandHeader hidden-xs hidden-sm">On Demand {{webinarResource}}</div>	
+                        <div class="list-item-content col-xs-8 col-sm-7 col-md-12">
+                            <h4>{{webinarTitle}}</h4>
+                            <div class="len">{{webinarLengthmin}} min</div>
+                            <div class="desc hidden-xs">{{webinarDescription}}</div>
+                            <a class="btn {{audience}} btn-sm visible-xs-inline-block" href="{{learnMoreUrl}}" target="_blank">{% if buttonCopy == "" or buttonCopy == nil %}WATCH NOW{% else %}{{buttonCopy}}{% endif %}</a>
+                            <a class="btn {{audience}} hidden-xs" href="{{learnMoreUrl}}" target="_blank">{% if buttonCopy == "" or buttonCopy == nil %}WATCH NOW{% else %}{{buttonCopy}}{% endif %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- #############################################
+	################## FOOTER #####################
+     ############################################# -->
+
+            <!-- template: footer -->
+			</div>
+			<a id="showMore" href="#">See More</a>
+		</div>
+	</div>
+</div>
+<!-- used to convey above or below medium breakpoint to javascript -->
+<div id="md-up" class="hidden-xs hidden-sm"></div>
+<script>
+	var initialItems = 6;					// how many items to show at first
+	var currentShowing = initialItems;		// used to keep track of current index in filtered elements
+	var nextShow = 6;						// number of elements to add when clicking show more
+	var selectedElements = $('.list-item'); // mutable array of filtered elements
+
+	// set up isotope grid and options
+	var $grid = $('.onDemandWebinar .list-wrap.list-grid').imagesLoaded( function() {
+		$grid.isotope({
+			itemSelector: '.list-item',
+			percentPosition: true,
+			layoutMode: 'fitRows',
+			masonry: {
+				// use element for option
+				columnWidth: '.grid-sizer'
+			}
+		});
+	});
+		
+	// for show more functionality
+	// timeout needed for transition to complete
+	function hideElements() {
+		$('#showMore').hide();
+		setTimeout(function(){ 
+			selectedElements = $('.list-item').not(':hidden')
+			$grid.isotope('hideItemElements', selectedElements.slice(currentShowing)); 
+		}, 100);
+		setTimeout(function(){ 
+			$grid.isotope('layout'); 
+			checkButton();
+		}, 300);
+		
+	}
+	
+	// for show more functionality
+	// timeout needed for transition to complete
+	function showNextElements() {
+		$('#showMore').hide();
+		$grid.isotope('layout');
+		$grid.isotope( 'revealItemElements', selectedElements.slice(currentShowing, currentShowing + nextShow));
+		currentShowing = (selectedElements.length <= currentShowing + nextShow) ? selectedElements.length : currentShowing + nextShow;
+		$grid.isotope('layout'); 
+		setTimeout(function(){ 
+			//$grid.isotope('layout');
+			checkButton();
+		}, 300);
+
+	}
+
+	// display show more button based on size of filtered elements
+	function checkButton() {
+		if (currentShowing >= selectedElements.length) {
+			$('#showMore').hide();
+		} else {
+			$('#showMore').show();
+		}
+	}
+	
+	/* function to display only relevant filters. All available audience topics will always be selectable, however
+	   topic filters will narrow based on the audience selection and available topics */
+	function displayFilters() {
+	
+		// remove filter-true from all topic filters except the 'all' filter
+		$('#topicFilter li:not(.all)').each(function() {
+			$(this).removeClass('filter-true');
+		});
+		
+		// remove filter-true from all resource filters except the 'all' filter
+		$('#resourceFilter li:not(.all)').each(function() {
+			$(this).removeClass('filter-true');
+		});
+		
+		// active audience filter
+		var selectedAudience = $('#audienceFilter .active').attr('data-filter').replace(".", "");
+		if (selectedAudience == '*') { selectedAudience = 'all'; }
+		var selectedTopics = [];
+		$('#topicFilter .active').each(function() {
+			if ($(this).attr('data-filter') != "*") {					
+				selectedTopics.push($(this).attr('data-filter').replace(".",""));
+			}
+		});
+		if(selectedTopics.length == 0) { selectedTopics = 'all'; }
+		var selectedResources = [];
+		$('#resourceFilter .active').each(function(){
+			if($(this).attr('data-filter') != "*"){
+				selectedResources.push($(this).attr('data-filter').replace(".",""));
+			}
+		});
+		if (selectedResources.length == 0) { selectedResources = 'all'; }
+		
+		var relevantCards = cardMapping.filter(card => (selectedAudience === 'all' || card.audience === selectedAudience) &&
+								(selectedTopics === 'all' || selectedTopics.some(t => card.topics.includes(t))) &&
+								(selectedResources === 'all' || selectedResources.some(r => r === card.content)));
+		
+		var distinctTopics = [];
+		var distinctResources = [];
+		
+		relevantCards.forEach(function(card){
+			if(distinctResources.indexOf(card.content) == -1){
+				distinctResources.push(card.content);
+			}
+			
+			card.topics.map( topic => {
+				if(distinctTopics.indexOf(topic) == -1){
+					distinctTopics.push(topic);
+				}
+			});
+		});
+		
+		distinctTopics.forEach(function(topic){
+			$('#topicFilter .' + topic).addClass('filter-true');
+		});
+		
+		distinctResources.forEach(function(res){
+			$('#resourceFilter .' + res).addClass('filter-true');
+		});
+		// iterate through topicMap object, showing all audience filters and only relevant topic filters
+		for (key in topicMap) {
+			var filterTrueAudience = '[data-filter=".' + key + '"]';
+			$('#audienceFilter').find(filterTrueAudience).addClass('filter-true');
+		}
+		
+		// as long as the three filter are not 'All' (one can be)
+		if ($('#audienceFilter .active').text() != 'All' || $('#topicFilter .active').text() != 'All' || $('#resourceFilter .active').text() != 'All') {
+			$('#resetMenu').css('display', 'inline-block'); 																				// show reset menu
+			$('#topicsSelected').html("");
+			$('#resourcesSelected').html("");
+			
+			if ($('#audienceFilter .active').text() != 'All') {																				// add bubble for audience filter if not 'All'
+				$('#audienceSelected').html('<span class="removeable">' + $('#audienceFilter .active').text() + '<span class="bubbles icon-si_close"></span></span>');
+			}
+			$('#audienceSelected').removeClass(); 																							// clear previous (potentially conflicting) classes
+			$('#audienceSelected').addClass($('#audienceFilter .active').attr('class').replace("active", "").replace("filter-true", "")); 	// assign audience class for wayfinding colors
+			$('#topicFilter .active').each(function() { 																					// add bubble(s) for active topic(s) if not 'All'
+				if ($('#topicFilter .active').text() != 'All') $('#topicsSelected').append('<span>' + $(this).text() + '<span class="bubbles icon-si_close"></span></span>');
+			});
+			$('#resourceFilter .active').each(function(){
+			    if ($('#resourceFilter .active').text() != 'All') $('#resourcesSelected').append('<span>' + $(this).text() + '<span class="bubbles icon-si_close"></span></span>');
+			});
+		} else {																															// hide reset menu
+			$('#resetMenu').css('display', 'none');
+			$('.selectedFilters span span').remove();
+		}
+		$grid.isotope('layout');
+		$('#bubbleSpacer').outerHeight($('.selectedFilters').outerHeight());
+	}
+	
+	$(document).ready(function() {
+		// populate topic and resource filter
+		topics.forEach(e => {$('#topicFilter').append('<li class="' + e.replaceAll("&amp; ", "").replaceAll(" ", "-") + '" data-filter=".' + e.replaceAll("&amp; ", "").replaceAll(" ", "-") + '">' + e.replace("1", "") + '</li>');});
+		resources.forEach(r => {$('#resourceFilter').append('<li class="' + r.replaceAll("&amp; ", "").replaceAll(" ", "-") + '" data-filter=".' + r.replaceAll("&amp; ", "").replaceAll(" ", "-") + '">' + r.replace("1", "") + '</li>');});
+		
+		displayFilters();
+		hideElements();
+		
+		// when the isotope grid rearranges
+		$grid.on('arrangeComplete', function (e, filteredItems) {
+			hideElements();
+		});
+		
+		// when clicking show more button
+		$('#showMore').on('click', function(e) {
+			e.preventDefault();
+			showNextElements();
+		});
+	
+		// when clearing audience bubbles
+		$('#audienceSelected').on('click', '.icon-si_close', function() {
+			var topFilter = [];
+			$('#topicFilter .active').each(function() {
+				if ($(this).attr('data-filter') != "*") {
+					topFilter.push("*" + "" + $(this).attr('data-filter'));
+				}
+			});
+			if(topFilter.length == 0){
+				topFilter.push("*");
+			}
+			var combinedFilter = [];
+			topFilter.forEach(function(item, index, array){
+				$('#resourceFilter .active').each(function(){
+					if($(this).attr('data-filter') !== "*"){
+						combinedFilter.push(item + "" + $(this).attr('data-filter'));
+					}
+					else{
+						combinedFilter.push(item);
+					}
+				});
+			});
+			
+			$('#audienceFilter .active').removeClass('active');
+			$('#audienceFilter li').eq(0).addClass('active');
+			$('#audienceSelected').removeClass();
+			$('#audienceSelected').html("");
+			displayFilters();
+			$grid.isotope({filter: combinedFilter.toString()});
+			currentShowing = initialItems;
+			$grid.isotope('layout');
+		});
+		
+		// when clearing topic bubbles
+		$('#topicsSelected').on('click', '.icon-si_close', function() {
+			var audFilter = $('#audienceFilter .active').attr('data-filter');
+			$('#topicFilter .active:contains("' + $(this).parents().eq(0).text() + '")').removeClass('active');
+			$(this).parents().eq(0).remove();
+			var topFilter = [];
+			$('#topicFilter .active').each(function() {
+				topFilter.push(audFilter + "" + $(this).attr('data-filter'));
+			});
+			
+			if (topFilter.length == 0) {
+				$('#topicFilter .all').addClass('active');
+				topFilter.push(audFilter); 
+				currentShowing = initialItems;
+				$grid.isotope('layout');
+			}
+			if (currentShowing > selectedElements.length) {
+				currentShowing = (selectedElements.length <= initialItems) ? initialItems : selectedElements.length;
+			}
+			var combinedFilters = [];
+			topFilter.forEach(function(item, index, array){
+				$('#resourceFilter .active').each(function(){
+					if($(this).attr('data-filter') !== "*"){
+						combinedFilters.push(item + "" + $(this).attr('data-filter'));
+					}
+					else{
+						combinedFilters.push(item);
+					}
+				});
+			});
+			displayFilters();
+			$grid.isotope({filter: combinedFilters.toString()});
+		});
+		
+		// when clearing resources bubbles
+		$('#resourcesSelected').on('click', '.icon-si_close', function() {
+			var audFilter = $('#audienceFilter .active').attr('data-filter');
+			$('#resourceFilter .active:contains("' + $(this).parents().eq(0).text() + '")').removeClass('active');
+			$(this).parents().eq(0).remove();
+			var resFilter = [];
+			$('#resourceFilter .active').each(function() {
+				resFilter.push(audFilter + "" + $(this).attr('data-filter'));
+			});
+			
+			if (resFilter.length == 0) {
+				$('#resourceFilter .all').addClass('active');
+				resFilter.push(audFilter); 
+				currentShowing = initialItems;
+				$grid.isotope('layout');
+			}
+			if (currentShowing > selectedElements.length) {
+				currentShowing = (selectedElements.length <= initialItems) ? initialItems : selectedElements.length;
+			}
+			
+			var combinedFilters = [];
+			resFilter.forEach(function(item, index, array){
+				$('#topicFilter .active').each(function(){
+					if($(this).attr('data-filter') !== "*"){
+						combinedFilters.push(item + "" + $(this).attr('data-filter'));
+					}
+					else{
+						combinedFilters.push(item);
+					}
+				});
+			});
+			displayFilters();
+			$grid.isotope({filter: combinedFilters.toString()});
+		});
+		// when clicking the reset menu button
+		$('#resetMenu').on('click', function() {
+			$('#audienceFilter .active').removeClass('active');
+			$('#topicFilter .active').removeClass('active');
+			$('#resourceFilter .active').removeClass('active');
+			
+			$('.all').addClass('active');
+			$('#topicsSelected > span').remove();
+			$('#resourcesSelected > span').remove();
+			$('#audienceSelected > span > span').parents().eq(0).remove();
+			$('#audienceSelected').removeClass();
+			displayFilters();
+			$grid.isotope({filter: "*"});
+			currentShowing = initialItems;
+			$grid.isotope('layout');
+		});
+
+		// on click listener and handler for each webinar filter
+		$('.onDemandWebinar .list-filter').each(function(){
+			$(this).on('click', 'li', function(event) {
+				var $target = $(event.currentTarget);							// filter that was clicked
+				var itemParent = $(this).parents().eq(0);
+				
+				//if All was clicked, remove active class for all the rest
+				if($(this).text() == 'All'){
+					$($(this).parents().eq(0).find('[class*=active]')).removeClass('active');
+				}
+				else{
+					switch(itemParent.attr('id')){
+						case "audienceFilter":
+							// remove previous active filter if audience filter
+							$('#audienceFilter .active').removeClass('active');
+							break;
+						case "resourceFilter":
+							// resource filter was clicked, and it was NOT 'All', so make sure
+							// that 'All' is not active
+							$('#resourceFilter .all').removeClass('active');
+							break;
+						case "topicFilter":
+							// topic filter was clicked, and it was NOT 'All', so make sure
+							// that 'All' is not active
+							$('#topicFilter .all').removeClass('active');
+							break;
+					}
+				}
+				// make clicked filter active/inactive
+				$target.toggleClass('active');									
+				
+				// active audience, resource filters and topic filters
+				var audFilter = $('#audienceFilter .active').attr('data-filter');
+				var topFilter = [];
+				var resFilter = [];
+				
+				$('#topicFilter .active').each(function() {
+					// ignore 'All'
+					if ($(this).attr('data-filter') != "*") {					
+						topFilter.push($(this).attr('data-filter'));
+					}
+				});
+				
+				$('#resourceFilter .active').each(function(){
+				    if($(this).attr('data-filter') != "*"){
+				        resFilter.push($(this).attr('data-filter'));
+				    }
+				});
+				
+				// determine if topics are relevant to the selected audience
+				var isTopicRelevant = true; 
+				// determine if resources are relevant to the selected audience
+				var isResourceRelevant = true;
+				
+				if (audFilter != '*') {			// only need to do if a specific audience is selected
+					isTopicRelevant = false;	// assume topic is not relevant until proven otherwise
+					isResourceRelevant = false; // assume resource is not relevant
+					
+					topFilter.forEach(function(topic){
+						if(cardMapping.filter(function(c){
+							return c.audience === audFilter.replace(".","") && c.topics.includes(topic.replace(".",""))
+						}).length > 0){
+							isTopicRelevant = true;
+						}
+					});
+					
+					resFilter.forEach(function(res){
+						if(cardMapping.filter(function(c){
+							return c.audience === audFilter.replace(".","") && c.content === res.replace(".","")
+						}).length > 0){
+							isResourceRelevant = true;
+						}
+					});
+				}
+				
+				var combinedFilter = [];
+				
+				if(topFilter.length == 0){
+					resFilter.forEach(function(item){
+						combinedFilter.push(audFilter + "" + item);
+					});
+				}
+				else{
+					topFilter.forEach(function(topic, index, array){
+						if(resFilter.length == 0){
+							combinedFilter.push(audFilter + "" + topic);
+						}
+						else{
+							resFilter.forEach(function(resource, ind, arr){
+								combinedFilter.push(audFilter + "" + topic + "" + resource);
+							});
+						}
+					});
+				}
+				
+				// if topic not relevant, reset topic filter
+				if (!isTopicRelevant) { 
+					$('#topicFilter .active').removeClass('active');
+					$('#topicFilter .all').addClass('active');
+				}
+				
+				// if resource not relevant, reset resource filter
+				if (!isResourceRelevant) { 
+					$('#resourceFilter .active').removeClass('active');
+					$('#resourceFilter .all').addClass('active');
+				}
+				
+				// define filter values according to selected filters and then filter via isotope.js
+				var filterValue = combinedFilter.toString();
+				
+				if (audFilter == '*' && combinedFilter.length == 0) {
+					filterValue = '*' + audFilter;
+					currentShowing = initialItems;
+				} else if (audFilter == '*') {
+					filterValue = combinedFilter.toString();
+				} else if (combinedFilter.length == 0 || (!isTopicRelevant && !isResourceRelevant)) {
+					filterValue = audFilter;
+				}
+	
+				$grid.isotope({filter: filterValue});
+				displayFilters();	// adjust filters based on new selections*/
+			});
+		});
+	});
+	
+	// to ensure that 'layout' is called after page load one time
+	window.addEventListener('load', (event) => {
+		setTimeout(function(){ 
+			$grid.isotope('layout'); 
+		}, 300);
+	});
+</script>
