@@ -1,0 +1,26 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage <Swbc.Modules.AdValoremSwivel.Models.Settings>
+
+@using DotNetNuke.Web.Mvc.Helpers
+
+<h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead"><a href="" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a></h2>
+<fieldset>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.IntegrationId, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextBoxFor(m => Model.IntegrationId)
+    </div>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.PaymentId, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextBoxFor(m => Model.PaymentId)
+    </div>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.IntegrationURL, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextBoxFor(m => Model.IntegrationURL)
+    </div>
+</fieldset>
+

@@ -1,0 +1,30 @@
+#submitButton {
+    margin-top: 25px;
+}
+
+#closeFlowButtonWrapper {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 0px 10px 10px 10px;
+    background: #fff;
+    border-radius: 0px 0px 25px 25px;
+}
+
+#closeFlowButtonWrapper.hidden {
+    padding: 0px;
+}
+
+input[type="number"] {
+    font-size: 18px;
+    font-family: "proxima-nova", sans-serif;
+    border: 1px solid #CBC5C1;
+    line-height: 1em;
+    padding: 10px 8px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}

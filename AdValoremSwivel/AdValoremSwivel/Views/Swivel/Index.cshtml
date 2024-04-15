@@ -1,0 +1,248 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Swbc.Modules.AdValoremSwivel.Models.RequestPayload>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div id="SwivelForm-@Dnn.ModuleContext.ModuleId">
+    <form>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label><br />
+                    <input class="col-xs-12" type="text" id="firstName" name="firstName" required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label><br />
+                    <input class="col-xs-12" type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email">Email Address:</label><br />
+                    <input class="col-xs-12" type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="address">Address:</label><br />
+                    <input class="col-xs-12" type="text" id="address" name="address" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="city">City:</label><br />
+                    <input class="col-xs-12" type="text" id="city" name="city" required>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="state">State:</label><br />
+                    <input class="col-xs-12" type="text" id="state" name="state" required>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="zip">ZIP Code:</label><br />
+                    <input class="col-xs-12" type="text" id="zip" name="zip" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="invoice">Invoice Number:</label><br />
+                    <input class="col-xs-12" type="number" id="invoice" name="invoice" required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="amount">Amount:</label><br />
+                    <input class="col-xs-12" type="number" id="amount" name="amount" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <input id="submitButton" class="btn btn-primary col-sm-4 col-sm-offset-4" type="submit" value="Make Payment">
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- swivel iframe where user will interact with the payment service -->
+<div id="swivel-iframe"></div>
+<div id="closeFlowButtonWrapper" class="hidden">
+    <button id="closeFlowButton" class="btn btn-danger hidden">Close</button>
+</div>
+
+
+<!-- swivel integration for BETA -->
+<script src="@ViewBag.SwivelIntegrationURL"></script>
+
+<script>
+    // data from form
+    var formData = {};
+
+    // represents "~" for dynamic environment referencing
+    var siteRoot =  "@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/")";
+
+    // swivel instance
+    const SWBC = new SWBCSDK();
+    var Payments;
+
+    // init payment flow via ajax call for more secure server-side accessing of sensitive data
+    $.ajax({
+            type: 'post',
+            url: "/DesktopModules/MVC/AdValoremSwivel/Swivel/AjaxSwivelPaymentInit",
+            headers: {
+            "ModuleId": @Dnn.ModuleContext.ModuleId,
+            "TabId":@Dnn.ModuleContext.TabId,
+            "Access-Control-Allow-Origin": siteRoot
+            },
+            success: function (data)
+            {
+                Payments = new SWBC.Payments(data);
+            },
+            error: function (response, error) {
+                console.log(arguments);
+                console.log(error);
+                alert("Error initializing Payment Processing. Please refresh page and try again.");
+            }
+        });
+
+    // client side swivel processing
+    function submitSwivel(jwt) {
+        Payments.setPaymentResponseHandler(responseHandler);
+        Payments.startPaymentFlow(jwt);
+    }
+
+    function submitData() {
+        // process form data upon submission and construct request payload in json format
+        formData = {
+            "user": {
+                "firstName": $("#firstName").val(),
+                "lastName": $("#lastName").val(),
+                "emailAddress": $("#email").val(),
+                "address": $("#address").val(),
+                "city": $("#city").val(),
+                "state": $("#state").val(),
+                "zipCode": $("#zip").val(),
+            },
+            "paymentInformation": [
+                {
+                    "amount": $("#amount").val(),
+                    "applyFundsTo": $("#invoice").val(),
+                    "type": "Invoice"
+                }
+            ],
+        };
+
+        // ajax call to controller for request jwt processing and return
+        $.ajax({
+            type: 'post',
+            url: "/DesktopModules/MVC/AdValoremSwivel/Swivel/AjaxSwivelRequestProcessing",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(formData),
+            headers: {
+                "ModuleId": @Dnn.ModuleContext.ModuleId,
+                "TabId":@Dnn.ModuleContext.TabId,
+                "Access-Control-Allow-Origin": siteRoot
+            },
+            success: function (data) {
+                submitSwivel(data);     // continue to process data with swivel sdk
+            },
+            error: function (response, error) {
+                console.log(arguments);
+                console.log(error);
+                alert("Error submitting payment. Please refresh page and try again.");
+            }
+        });
+    }
+
+    // response handler for sdk response
+    function responseHandler(message) {
+        var token = {
+            "token": message
+        };
+
+        $('#closeFlowButtonWrapper').removeClass("hidden");
+        $('#closeFlowButton').removeClass("hidden");
+
+        initCssValues();
+
+        // NOT NEEDED FOR PHASE 1, but keeping in code in case needed for phase 2
+        // ajax call to controller for jwt verification and response processing
+        @*$.ajax({
+            type: 'post',
+            url: "/DesktopModules/MVC/AdValoremSwivel/Swivel/AjaxSwivelResponseProcessing",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(token),
+            headers: {
+            "ModuleId": @Dnn.ModuleContext.ModuleId,
+            "TabId":@Dnn.ModuleContext.TabId,
+            "Access-Control-Allow-Origin": siteRoot
+            },
+            success: function (data)
+            {
+                console.log("success: " + data);  // testing data returned from controller
+            },
+            error: function (response, error) {
+                console.log(arguments);
+                console.log(error);
+            }
+        });*@
+    }
+
+    function initCssValues() {
+        // initial font-size of the html element; this is "one rem unit" in pixels
+        var rem = function rem() {
+            var html = document.getElementsByTagName('html')[0];
+
+            return function () {
+                return parseInt(window.getComputedStyle(html)['fontSize']);
+            }
+        }();
+
+        // position iframe belowe heroMain section
+        var iframeOffset = $('.heroMain').outerHeight();
+        $('#swivel-iframe').css('padding-top', iframeOffset);
+
+
+        // set position of close button for gracefully dismissing iframe by the user
+        var vh = window.innerHeight;
+        var rems4 = rem() * 4;
+        var iframeHeight = vh - iframeOffset - rems4;
+        if (iframeHeight > 550) {
+            iframeHeight = 550;
+        }
+        var wrapperHeight = $('#closeFlowButtonWrapper').outerHeight();
+        var closeButtonWrapperOffset = vh - iframeHeight - iframeOffset - wrapperHeight;
+        $('#closeFlowButtonWrapper').css('bottom', closeButtonWrapperOffset);
+    }
+
+    $(document).ready(function () {
+        // register submit button listener
+        $("#submitButton").click(function (event) {
+            event.preventDefault();
+            submitData();
+        });
+
+        // register close modal button listener
+        $("#closeFlowButton").click(function (event) {
+            event.preventDefault();
+            Payments.closePaymentFlow();
+            $('#closeFlowButtonWrapper').addClass("hidden");
+            $('#closeFlowButton').addClass("hidden");
+            location.reload();
+        });
+    });
+    $(window).resize(initCssValues);
+</script>
+
