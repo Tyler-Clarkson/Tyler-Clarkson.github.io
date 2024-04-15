@@ -28,7 +28,7 @@
 		{% assign topicsAsSafeString = topic | join: "," | replace: "&amp; ", "" | replace: " ", "-" | replace: ",", " " |replace: "Insurance", "Insurance1" %}
 		{% assign topicsAsString = topic | join: ", " | replace: "Insurance", "Insurance1" %}
 		{% assign titleAsId = webinarTitle | replace: " ", "" %}
-		{% assign titleAsId = {{titleAsId | remove: '\''}} -%}
+		{% assign titleAsId = {{titleAsId | remove: '\''}} %}
 		{% assign titleAsId = {{titleAsId | remove: '!'}} -%}
 		{% assign titleAsId = {{titleAsId | remove: '@'}} -%}
 		{% assign titleAsId = {{titleAsId | remove: '£'}} -%}
