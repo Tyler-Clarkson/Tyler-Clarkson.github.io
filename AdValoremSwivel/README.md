@@ -1,5 +1,5 @@
-# Introduction 
-Payment solution for Ad Valorem customers. 
+# Swivel Payment Solution for Internal Customer
+This is a standalone module written in ASP.NET C# MVC for the Evoq platform, and allows for external customers to pay for a service via an API integration with Swivel Payment Processing. The live solution may be found at https://www.swbc.com/advalorem-payment
 
 # Getting Started
 1.	Installation process
