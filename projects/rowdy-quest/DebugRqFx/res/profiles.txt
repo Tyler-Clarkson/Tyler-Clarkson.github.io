@@ -1,0 +1,8 @@
+b b Brandon Black 904.0 1360.0 res/maps/NPBFloor3.txt 
+t t Tyler Clarkson 61.0 64.0 res/maps/campus.txt 
+v v v v 35.0 60.0 res/maps/campus.txt 
+v v v v 35.0 60.0 res/maps/campus.txt 
+v v v v 35.0 60.0 res/maps/campus.txt 
+Marlena create Marlena Garza 640.0 1168.0 res/maps/NPBFloor4.txt 
+Marlena create Marlena garza 35.0 60.0 res/maps/campus.txt 
+q q q q 728.0 1024.0 res/maps/NPBFloor1.txt 
