@@ -2220,6 +2220,9 @@ header .logo a {
 	font-style: normal;
 	text-rendering: optimizeLegibility;
 }
+#awards h1 {
+	color: white;
+}
 #stats, #awards {
 	background: #990047;
 	padding-top: 7.2rem;
