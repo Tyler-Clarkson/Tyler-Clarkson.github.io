@@ -1569,18 +1569,32 @@ header .logo a {
 }
 .about-content .skills-outer-wrapper {
 	position: relative;
-	transition: height 5s linear;
 	overflow: hidden;
 }
 .about-content .skills-outer-wrapper.collapse {
 	overflow: visible;
 	position: relative;
 }
+.about-content .skills-outer-wrapper .skills-toggle small {
+	font-family: "poppins-semibold", sans-serif;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+}
 .about-content .skills-outer-wrapper .skills-toggle {
 	position: absolute;
-	bottom: 0px;
 	left: 50%;
 	transform: translate(-50%, 0);
+}
+.about-content .skills-outer-wrapper.collapse .skills-toggle {
+	bottom: 0px;
+}
+.about-content .skills-outer-wrapper .skills-toggle {
+	bottom: 15px;
+}
+.about-content .skills-outer-wrapper .skills-toggle > small {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0px);
 }
 .about-content .skills-outer-wrapper .skills-toggle:hover {
 	cursor: pointer;
@@ -2196,31 +2210,37 @@ header .logo a {
 
 /** 
  * ===================================================================
- * 16. stats - (_layout.scss)
+ * 16. stats and awards sections - (_layout.scss)
  *
  * ------------------------------------------------------------------- 
  */
-#stats {
+#awards small {
+	font-family: "poppins-semibold", sans-serif;
+	color: #fff;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+}
+#stats, #awards {
 	background: #990047;
 	padding-top: 7.2rem;
 	padding-bottom: 6rem;
 	text-align: center;
 }
-#stats .row {
+#stats .row, #awards .row {
 	max-width: 1440px;
 }
-#stats .stat {
+#stats .stat, #awards .award {
 	border-left: 1px solid rgba(255, 255, 255, 0.12);
 	min-height: 17.4rem;
 }
-#stats .stat:first-child {
+#stats .stat:first-child, #awards .award:first-child {
 	border: none;
 }
-#stats .icon-part i {
+#stats .icon-part i, #awards .icon-part i {
 	font-size: 4.8rem;
 	color: #000000;
 }
-#stats .stat-count {
+#stats .stat-count, #awards .award-count {
 	color: #FFFFFF;
 	font-size: 3.6rem;
 	margin-top: 1.2rem;
@@ -2228,7 +2248,7 @@ header .logo a {
 	font-family: "poppins-medium", sans-serif;
 	color: white;
 }
-#stats .stat-title {
+#stats .stat-title, #awards .award-title {
 	color: rgba(255, 255, 255, 0.5);
 }
 
@@ -2238,24 +2258,24 @@ header .logo a {
  * -------------------------------------------------------------------
  */
 @media only screen and (max-width:1024px) {
-	#stats .stat:nth-child(n) {
+	#stats .stat:nth-child(n), #awards .award:nth-child(n) {
 		border-left: 1px solid rgba(255, 255, 255, 0.12);
 		padding-bottom: 1.5rem;
 	}
-	#stats .stat:nth-child(3n+1) {
+	#stats .stat:nth-child(3n+1), #awards .award:nth-child(3n+1) {
 		border: none;
 	}
 }
 @media only screen and (max-width:768px) {
-	#stats .stat:nth-child(n) {
+	#stats .stat:nth-child(n), #awards .award:nth-child(n) {
 		border-left: 1px solid rgba(255, 255, 255, 0.12);
 	}
-	#stats .stat:nth-child(2n+1) {
+	#stats .stat:nth-child(2n+1), #awards .award:nth-child(2n+1) {
 		border: none;
 	}
 }
 @media only screen and (max-width:600px) {
-	#stats .stat:nth-child(n) {
+	#stats .stat:nth-child(n), #awards .award:nth-child(n) {
 		border: none;
 	}
 }

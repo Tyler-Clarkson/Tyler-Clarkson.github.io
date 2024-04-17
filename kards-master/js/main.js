@@ -310,8 +310,8 @@
 			height: ${profileHeight - 25}px;
 		}
 		.about-content .skills-wrapper, about-content .skills-outer-wrapper {
-			height: ${skillHeight}px;
-			transition: height 1s linear;
+			height: ${skillHeight + 45}px;
+			transition: height .5s linear;
 		}`;
 	document.head.appendChild(skillStyle);
 	
